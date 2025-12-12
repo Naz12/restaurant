@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en-us" class="scroll-smooth">
+    <head>
+        <meta charset="utf-8" />
+        <title>TableTrack - Restaurant Management (Laravel Livewire)</title>
+        <meta
+            name="description"
+            content="TableTrack - The Complete SaaS Restaurant Management Solution"
+        />
+        <meta name="author" content="ajay138" />
+        <meta name="copyright" content="ajay138" />
+        <meta name="date" content="2017-05-18T00:00:00+02:00" />
+        <script src="https://cdn.tailwindcss.com"></script>
+    </head>
+
+    <body class="bg-gray-50">
+        <!-- Sticky Get TableTrack Button -->
+        <div class="fixed top-4 right-4 z-50">
+            <a
+                href="https://1.envato.market/tabletrack"
+                class="inline-flex items-center px-6 py-3 bg-[#a78bfa] text-white font-semibold rounded-lg shadow-lg hover:bg-[#9061f9] transition-colors duration-200"
+            >
+                <span>Get TableTrack</span>
+                <svg
+                    class="w-5 h-5 ml-2"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M17 8l4 4m0 0l-4 4m4-4H3"
+                    />
+                </svg>
+            </a>
+        </div>
+
+        <div class="flex">
+            <!-- Rest of the code remains exactly the same -->
+            <!-- Left Sidebar -->
+            <aside
+                class="w-64 h-screen bg-gray-900 text-white overflow-y-auto sticky top-0"
+            >
+                <div class="p-6">
+                    <img src="assets/img/logo.png" alt="Logo" class="h-12" />
+                </div>
+                <nav class="mt-6">
+                    <ul class="space-y-2">
+                        <li>
+                            <a
+                                href="#documenter_cover"
+                                class="flex items-center px-6 py-3 text-white hover:bg-gray-800 hover:text-blue-400 transition-colors duration-200"
+                            >
+                                <svg
+                                    class="w-5 h-5 mr-2"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+                                    ></path>
+                                </svg>
+                                Start
+                            </a>
+                        </li>
+                        <li>
+                            <a
+                                href="#description"
+                                class="flex items-center px-6 py-3 text-white hover:bg-gray-800 hover:text-blue-400 transition-colors duration-200"
+                            >
+                                <svg
+                                    class="w-5 h-5 mr-2"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                                    ></path>
+                                </svg>
+                                Description
+                            </a>
+                        </li>
+                        <li>
+                            <a
+                                href="#server_requirements"
+                                class="flex items-center px-6 py-3 text-white hover:bg-gray-800 hover:text-blue-400 transition-colors duration-200"
+                            >
+                                <svg
+                                    class="w-5 h-5 mr-2"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"
+                                    ></path>
+                                </svg>
+                                Server Requirements
+                            </a>
+                        </li>
+                        <li>
+                            <a
+                                href="#installation"
+                                class="flex items-center px-6 py-3 text-white hover:bg-gray-800 hover:text-blue-400 transition-colors duration-200"
+                            >
+                                <svg
+                                    class="w-5 h-5 mr-2"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"
+                                    ></path>
+                                </svg>
+                                Installation
+                            </a>
+                        </li>
+                        <li>
+                            <a
+                                href="#documentation"
+                                class="flex items-center px-6 py-3 text-white hover:bg-gray-800 hover:text-blue-400 transition-colors duration-200"
+                            >
+                                <svg
+                                    class="w-5 h-5 mr-2"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
+                                    ></path>
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                                    ></path>
+                                </svg>
+                                Settings
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <div
+                    class="p-4 text-sm text-gray-400 border-t border-gray-800 mt-8"
+                >
+                    Copyright
+                    <a
+                        href="https://1.envato.market/froiden"
+                        class="text-blue-400 hover:underline"
+                        >ajay138</a
+                    >
+                </div>
+            </aside>
+
+            <!-- Main Content -->
+            <main class="flex-1 overflow-y-auto">
+                <div class="p-8 max-w-4xl">
+                    <section id="documenter_cover" class="mb-16 pt-8">
+                        <h1 class="text-4xl font-bold text-gray-900 mb-4">
+                            TableTrack
+                        </h1>
+                        <h2 class="text-2xl text-gray-700 mb-8">
+                            The Complete SaaS Restaurant Management Solution
+                        </h2>
+
+                        <div
+                            class="border-t border-b border-gray-200 py-6 my-8"
+                        >
+                            <ul class="space-y-2 text-gray-600">
+                                <li>Created: 01 September 2024</li>
+
+                                <li>
+                                    by:
+                                    <a
+                                        href="https://1.envato.market/froiden"
+                                        target="_blank"
+                                        class="text-blue-600 hover:underline"
+                                        >ajay138</a
+                                    >
+                                </li>
+                                <li>
+                                    Support:
+                                    <a
+                                        href="https://froiden.freshdesk.com/"
+                                        target="_blank"
+                                        class="text-blue-600 hover:underline"
+                                        >https://froiden.freshdesk.com/</a
+                                    >
+                                </li>
+                            </ul>
+                        </div>
+
+                        <p class="text-gray-600">
+                            Thank you for purchasing TableTrack. If you have any
+                            questions that are beyond the scope of this help
+                            file, please feel free to contact us via support
+                            ticket. Thanks so much!
+                        </p>
+                    </section>
+
+                    <section id="description" class="mb-16 pt-16">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-6">
+                            Description
+                        </h3>
+                        <p class="text-gray-600 mb-6">
+                            TableTrack is a comprehensive SaaS-based restaurant
+                            management solution that revolutionizes how
+                            restaurants operate. Built with Laravel and
+                            Livewire, it offers a modern, responsive interface
+                            for seamless restaurant management.
+                        </p>
+                        <div class="space-y-4 text-gray-600">
+                            <h4 class="font-semibold text-xl">Key Features:</h4>
+                            <ul class="list-disc pl-6 space-y-2">
+                                <li>Multi-restaurant Management</li>
+                                <li>Table & Reservation Management</li>
+                                <li>Menu & Order Management</li>
+                                <li>Kitchen Display System (KDS)</li>
+                                <li>Inventory Management</li>
+                                <li>Staff Management & Scheduling</li>
+                                <li>Real-time Analytics & Reports</li>
+                                <li>Multi-language Support</li>
+                                <li>Subscription & Payment Integration</li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <section id="server_requirements" class="mb-16 pt-16">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-6">
+                            Server Requirements
+                        </h3>
+                        <p class="text-gray-600 mb-4">
+                            The Server needs to meet the following requirements
+                            to run the application:
+                        </p>
+                        <ul class="list-disc pl-6 space-y-2 text-gray-600">
+                            <li>PHP >= 8.2.X</li>
+                            <li>OpenSSL PHP Extension</li>
+                            <li>PDO PHP Extension</li>
+                            <li>Mbstring PHP Extension</li>
+                            <li>Tokenizer PHP Extension</li>
+                            <li>XML PHP Extension</li>
+                            <li>GD PHP Extension</li>
+                            <li>Fileinfo PHP Extension</li>
+                        </ul>
+                    </section>
+
+                    <section id="installation" class="mb-16 pt-16">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-6">
+                            Installation
+                        </h3>
+                        <div class="bg-white p-6 rounded-lg shadow-sm">
+                            <h2 class="text-xl">
+                                Refer to our detailed
+                                <a
+                                    href="https://froiden.freshdesk.com/en/support/solutions/articles/43000735582-TableTrack-installation"
+                                    class="text-blue-600 hover:underline"
+                                    target="_blank"
+                                    >TableTrack Installation Documentation</a
+                                >
+                            </h2>
+                        </div>
+                    </section>
+
+                    <section id="documentation" class="mb-16 pt-16">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-6">
+                            Settings and Configuration
+                        </h3>
+                        <div class="bg-white p-6 rounded-lg shadow-sm">
+                            <h2 class="text-xl">
+                                Refer to our comprehensive
+                                <a
+                                    href="https://froiden.freshdesk.com/support/solutions/articles/43000735584-TableTrack-settings-configuration"
+                                    class="text-blue-600 hover:underline"
+                                    target="_blank"
+                                    >TableTrack Settings Guide</a
+                                >
+                            </h2>
+                        </div>
+                    </section>
+                </div>
+            </main>
+        </div>
+
+        <script src="assets/js/jquery.js"></script>
+        <script>
+            // Smooth scroll functionality
+            document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+                anchor.addEventListener("click", function (e) {
+                    e.preventDefault();
+                    const section = document.querySelector(
+                        this.getAttribute("href")
+                    );
+                    const yOffset = -20;
+                    const y =
+                        section.getBoundingClientRect().top +
+                        window.pageYOffset +
+                        yOffset;
+                    window.scrollTo({ top: y, behavior: "smooth" });
+                });
+            });
+
+            // Active section highlighting
+            window.addEventListener("scroll", () => {
+                let current = "";
+                document.querySelectorAll("section").forEach((section) => {
+                    const sectionTop = section.offsetTop;
+                    if (pageYOffset >= sectionTop - 60) {
+                        current = section.getAttribute("id");
+                    }
+                });
+
+                document.querySelectorAll("nav a").forEach((a) => {
+                    a.classList.remove("bg-gray-800", "text-blue-400");
+                    if (a.getAttribute("href") === `#${current}`) {
+                        a.classList.add("bg-gray-800", "text-blue-400");
+                    }
+                });
+            });
+        </script>
+    </body>
+</html>
