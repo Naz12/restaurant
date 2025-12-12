@@ -1,0 +1,20 @@
+[Unit]
+Description=Restaurant Queue Worker
+After=network.target redis.service mysql.service
+
+[Service]
+Type=simple
+User=deploy_user_dagi
+Group=deploy_user_dagi
+WorkingDirectory=/home/deploy_user_dagi/services/table_track/restaurant
+Environment="PATH=/usr/bin:/usr/local/bin"
+ExecStart=/usr/bin/php -d memory_limit=1024M artisan queue:work database --timeout=0 --tries=3 --max-jobs=50 --max-time=3600
+Restart=always
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=restaurant-queue
+
+[Install]
+WantedBy=multi-user.target
+

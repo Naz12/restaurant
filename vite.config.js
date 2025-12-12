@@ -11,4 +11,12 @@ export default defineConfig({
             refresh: true,
         }),
     ],
+    server: {
+        hmr: {
+            host: 'localhost',
+        },
+    },
+    build: {
+        manifest: true,
+    },
 });

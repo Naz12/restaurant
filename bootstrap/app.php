@@ -29,6 +29,9 @@ return Application::configure(basePath: dirname(__DIR__))
             'order/png'
         ]);
 
+        // Trust all proxies to properly detect HTTPS
+        $middleware->trustProxies(at: '*');
+
         // Add CORS middleware globally to handle all CORS requests
         $middleware->append(\Illuminate\Http\Middleware\HandleCors::class);
     })

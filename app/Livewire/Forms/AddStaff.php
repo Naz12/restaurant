@@ -73,38 +73,65 @@ class AddStaff extends Component
             'memberEmail' => 'required|unique:users,email'
         ]);
 
-        $user = User::create([
-            'name' => $this->memberName,
-            'email' => $this->memberEmail,
-            'phone_number' => $this->restaurantPhoneNumber,
-            'phone_code' => $this->restaurantPhoneCode,
-            'password' => bcrypt($this->memberPassword),
-        ]);
-
-        $user->assignRole($this->memberRole);
-
         try {
-            $user->notify(new StaffWelcomeEmail($user->restaurant, $this->memberPassword));
+            $currentUser = user();
+            if (!$currentUser || !$currentUser->restaurant_id) {
+                $this->alert('error', __('messages.restaurantNotFound'), [
+                    'toast' => true,
+                    'position' => 'top-end',
+                ]);
+                return;
+            }
+
+            $user = User::create([
+                'name' => $this->memberName,
+                'email' => $this->memberEmail,
+                'phone_number' => $this->restaurantPhoneNumber,
+                'phone_code' => $this->restaurantPhoneCode,
+                'password' => bcrypt($this->memberPassword),
+                'restaurant_id' => $currentUser->restaurant_id,
+            ]);
+
+            $user->assignRole($this->memberRole);
+
+            // Refresh user to load restaurant relationship
+            $user->refresh();
+
+            try {
+                if ($user->restaurant) {
+                    $user->notify(new StaffWelcomeEmail($user->restaurant, $this->memberPassword));
+                }
+            } catch (\Exception $e) {
+                Log::error('Error sending staff welcome email: ' . $e->getMessage());
+            }
+
+            // Reset the form values
+            $this->memberName = '';
+            $this->memberEmail = '';
+            $this->memberRole = $this->roles->first()->name ?? '';
+            $this->memberPassword = '';
+            $this->restaurantPhoneNumber = '';
+            $this->restaurantPhoneCode = '';
+
+            // Dispatch event to close modal
+            $this->dispatch('hideAddStaff');
+            
+            // Dispatch event to refresh staff list
+            $this->dispatch('staffCreated');
+
+            $this->alert('success', __('messages.memberAdded'), [
+                'toast' => true,
+                'position' => 'top-end',
+                'showCancelButton' => false,
+                'cancelButtonText' => __('app.close')
+            ]);
         } catch (\Exception $e) {
-            Log::error('Error sending staff welcome email: ' . $e->getMessage());
+            Log::error('Error creating staff member: ' . $e->getMessage());
+            $this->alert('error', __('messages.errorOccurred'), [
+                'toast' => true,
+                'position' => 'top-end',
+            ]);
         }
-
-        // Reset the value
-        $this->memberName = '';
-        $this->memberEmail = '';
-        $this->memberRole = '';
-        $this->memberPassword = '';
-        $this->restaurantPhoneNumber = '';
-        $this->restaurantPhoneCode = '';
-
-        $this->dispatch('hideAddStaff');
-
-        $this->alert('success', __('messages.memberAdded'), [
-            'toast' => true,
-            'position' => 'top-end',
-            'showCancelButton' => false,
-            'cancelButtonText' => __('app.close')
-        ]);
     }
 
     public function render()

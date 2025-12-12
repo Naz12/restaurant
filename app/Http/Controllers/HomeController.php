@@ -13,13 +13,13 @@ use App\Models\FrontFeature;
 use App\Models\FrontReviewSetting;
 use App\Models\LanguageSetting;
 use App\Models\Restaurant;
-use Froiden\Envato\Traits\AppBoot;
+use App\Traits\AppBootOverride;
 use Illuminate\Support\Facades\File;
 
 class HomeController extends Controller
 {
 
-    use AppBoot;
+    use AppBootOverride;
 
     protected $language;
 

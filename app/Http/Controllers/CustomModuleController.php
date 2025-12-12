@@ -194,17 +194,6 @@ class CustomModuleController extends Controller
     }
 
 
-    public function verifyingModulePurchase(Request $request)
-    {
-        $request->validate([
-            'purchase_code' => 'required|max:80',
-        ]);
-
-        $module = $request->module;
-        $purchaseCode = $request->purchase_code;
-
-        return $this->modulePurchaseVerified($module, $purchaseCode);
-    }
 
     /**
      * @throws \Exception

@@ -24,7 +24,7 @@ class StaffTable extends Component
     public $confirmDeleteCustomerModal = false;
     public $showCustomerOrderModal = false;
 
-    protected $listeners = ['refreshCustomers' => '$refresh'];
+    protected $listeners = ['refreshCustomers' => '$refresh', 'staffCreated' => '$refresh'];
 
     public function mount()
     {

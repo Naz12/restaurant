@@ -212,7 +212,6 @@ Route::middleware(['auth', config('jetstream.auth_session'), 'verified', SuperAd
 
         Route::post('app-update/deleteFile', [GlobalSettingController::class, 'deleteFile'])->name('app-update.deleteFile');
         Route::resource('app-update', GlobalSettingController::class);
-        Route::post('custom-modules/verify-purchase', [CustomModuleController::class, 'verifyingModulePurchase'])->name('custom-modules.verify_purchase');
         Route::resource('custom-modules', CustomModuleController::class)->except(['update']);
         Route::put('custom-modules/{custom_module}', [CustomModuleController::class, 'update'])->withoutMiddleware('csrf')->name('custom-modules.update');
 
