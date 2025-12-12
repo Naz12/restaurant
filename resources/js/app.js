@@ -18,7 +18,9 @@ if (localStorage.getItem("menu-collapsed") === "true") {
 
 document.addEventListener("livewire:navigating", () => {
     // Mutate the HTML before the page is navigated away...
-    initFlowbite();
+    if (typeof initFlowbite === 'function') {
+        initFlowbite();
+    }
 });
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -218,36 +220,46 @@ document.addEventListener("livewire:navigated", () => {
             "toggleSidebarMobileSearch"
         );
 
-        toggleSidebarMobileSearch.addEventListener("click", () => {
-            toggleSidebarMobile(
-                sidebar,
-                sidebarBackdrop,
-                toggleSidebarMobileHamburger,
-                toggleSidebarMobileClose
-            );
-        });
+        if (toggleSidebarMobileSearch) {
+            toggleSidebarMobileSearch.addEventListener("click", () => {
+                toggleSidebarMobile(
+                    sidebar,
+                    sidebarBackdrop,
+                    toggleSidebarMobileHamburger,
+                    toggleSidebarMobileClose
+                );
+            });
+        }
 
-        toggleSidebarMobileEl.addEventListener("click", () => {
-            toggleSidebarMobile(
-                sidebar,
-                sidebarBackdrop,
-                toggleSidebarMobileHamburger,
-                toggleSidebarMobileClose
-            );
-        });
+        if (toggleSidebarMobileEl) {
+            toggleSidebarMobileEl.addEventListener("click", () => {
+                toggleSidebarMobile(
+                    sidebar,
+                    sidebarBackdrop,
+                    toggleSidebarMobileHamburger,
+                    toggleSidebarMobileClose
+                );
+            });
+        }
 
-        sidebarBackdrop.addEventListener("click", () => {
-            toggleSidebarMobile(
-                sidebar,
-                sidebarBackdrop,
-                toggleSidebarMobileHamburger,
-                toggleSidebarMobileClose
-            );
-        });
+        if (sidebarBackdrop) {
+            sidebarBackdrop.addEventListener("click", () => {
+                toggleSidebarMobile(
+                    sidebar,
+                    sidebarBackdrop,
+                    toggleSidebarMobileHamburger,
+                    toggleSidebarMobileClose
+                );
+            });
+        }
     }
 
-    // Reinitialize Flowbite components
-    initFlowbite();
+    // Reinitialize Flowbite components with delay to ensure DOM is ready
+    setTimeout(() => {
+        if (typeof initFlowbite === 'function') {
+            initFlowbite();
+        }
+    }, 100);
 });
 
 let attrs = [

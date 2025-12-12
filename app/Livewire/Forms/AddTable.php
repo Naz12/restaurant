@@ -58,7 +58,15 @@ class AddTable extends Component
             'hash' => md5(microtime() . rand(1, 99999999)),
         ]);
 
-        $table->generateQrCode();
+        try {
+            $table->generateQrCode();
+        } catch (\Exception $e) {
+            \Log::error('QR Code generation failed for table: ' . $e->getMessage(), [
+                'table_id' => $table->id,
+                'table_code' => $this->tableCode
+            ]);
+            // Continue even if QR code generation fails
+        }
         // Reset the value
 
         $this->resetForm();

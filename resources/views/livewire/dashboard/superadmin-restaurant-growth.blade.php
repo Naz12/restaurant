@@ -185,7 +185,7 @@
                         name: "@lang('modules.dashboard.newRestaurants')",
                         data: [
                             @foreach ($growthData as $data)
-                                {{ $data->new_restaurants }},
+                                {{ is_numeric($data->new_restaurants) ? $data->new_restaurants : 0 }},
                             @endforeach
                         ],
                         color: '#10B981'

@@ -107,7 +107,7 @@
                         name: "{{ __('modules.dashboard.earnings') }}",
                         data: [
                             @foreach ($salesData as $label)
-                                {{ $label->total_sales }},
+                                {{ is_numeric($label->total_sales) ? $label->total_sales : 0 }},
                             @endforeach
                         ],
                         color: '{{ restaurant()->theme_hex }}'
@@ -124,7 +124,7 @@
                 xaxis: {
                     categories: [
                         @foreach ($salesData as $label)
-                            "{{ \Carbon\Carbon::parse($label->date)->translatedFormat('d M') }}",
+                            "{{ $label->date ? \Carbon\Carbon::parse($label->date)->translatedFormat('d M') : '' }}",
                         @endforeach
                     ],
                     labels: {

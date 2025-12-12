@@ -182,7 +182,7 @@
                         name: "@lang('modules.dashboard.platformRevenue')",
                         data: [
                             @foreach ($revenueData as $data)
-                                {{ $data->total_revenue }},
+                                {{ is_numeric($data->total_revenue) ? $data->total_revenue : 0 }},
                             @endforeach
                         ],
                         color: '#3B82F6'
