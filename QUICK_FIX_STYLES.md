@@ -50,3 +50,4 @@ sudo ./fix-styles.sh
 2. Check page source for correct asset URLs
 3. Open browser console and check for 404 errors on CSS/JS files
 
+

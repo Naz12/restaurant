@@ -45,3 +45,4 @@ echo "View logs if needed:"
 echo "  sudo journalctl -u restaurant.service -f"
 echo ""
 
+

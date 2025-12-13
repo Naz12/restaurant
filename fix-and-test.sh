@@ -110,3 +110,4 @@ echo "To view logs: sudo journalctl -u restaurant.service -f"
 echo "To check status: sudo systemctl status restaurant.service"
 echo ""
 
+

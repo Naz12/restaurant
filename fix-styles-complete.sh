@@ -116,3 +116,4 @@ echo "  2. Check browser console (F12) for 404 errors on CSS/JS files"
 echo "  3. Verify assets: curl -I https://restaurant.akmicroservice.com/build/assets/app-*.css"
 echo ""
 
+

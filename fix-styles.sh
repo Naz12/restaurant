@@ -100,3 +100,4 @@ echo "To verify assets are loading, check:"
 echo "  - http://restaurant.akmicroservice.com/build/assets/"
 echo ""
 
+
