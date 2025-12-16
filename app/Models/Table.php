@@ -107,6 +107,8 @@ class Table extends BaseModel
     {
         return $this->tableSession()->firstOrCreate([
             'table_id' => $this->id
+        ], [
+            'branch_id' => $this->branch_id
         ]);
     }
 
