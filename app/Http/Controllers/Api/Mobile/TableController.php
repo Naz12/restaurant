@@ -14,7 +14,10 @@ class TableController extends Controller
      */
     public function index(Request $request)
     {
-        $query = Table::with(['area', 'activeOrder']);
+        $branch = $request->user()->branch;
+        
+        $query = Table::with(['area', 'activeOrder'])
+            ->where('branch_id', $branch->id);
 
         // Filter by area
         if ($request->has('area_id')) {
@@ -62,10 +65,13 @@ class TableController extends Controller
     /**
      * Get single table
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
+        $branch = $request->user()->branch;
+        
         $table = Table::with(['area', 'activeOrder.items', 'activeOrder.waiter'])
-            ->find($id);
+            ->where('branch_id', $branch->id)
+            ->findOrFail($id);
 
         if (!$table) {
             return response()->json([
@@ -102,9 +108,12 @@ class TableController extends Controller
     /**
      * Get table's active order
      */
-    public function activeOrder($id)
+    public function activeOrder(Request $request, $id)
     {
-        $table = Table::find($id);
+        $branch = $request->user()->branch;
+        
+        $table = Table::where('branch_id', $branch->id)
+            ->findOrFail($id);
 
         if (!$table) {
             return response()->json([
@@ -144,7 +153,10 @@ class TableController extends Controller
      */
     public function lock(Request $request, $id)
     {
-        $table = Table::find($id);
+        $branch = $request->user()->branch;
+        
+        $table = Table::where('branch_id', $branch->id)
+            ->findOrFail($id);
 
         if (!$table) {
             return response()->json([
@@ -181,7 +193,10 @@ class TableController extends Controller
      */
     public function unlock(Request $request, $id)
     {
-        $table = Table::find($id);
+        $branch = $request->user()->branch;
+        
+        $table = Table::where('branch_id', $branch->id)
+            ->findOrFail($id);
 
         if (!$table) {
             return response()->json([
@@ -211,9 +226,12 @@ class TableController extends Controller
     /**
      * Get all areas
      */
-    public function areas()
+    public function areas(Request $request)
     {
-        $areas = Area::withCount('tables')
+        $branch = $request->user()->branch;
+        
+        $areas = Area::where('branch_id', $branch->id)
+            ->withCount('tables')
             ->get()
             ->map(function($area) {
                 return [

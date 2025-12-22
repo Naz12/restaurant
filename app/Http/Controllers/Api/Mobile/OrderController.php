@@ -57,7 +57,9 @@ class OrderController extends Controller
         return response()->json([
             'success' => true,
             'data' => [
-                'orders' => $orders->items(),
+                'orders' => $orders->map(function($order) {
+                    return $this->formatOrder($order);
+                })->values()->toArray(),
                 'pagination' => [
                     'current_page' => $orders->currentPage(),
                     'last_page' => $orders->lastPage(),
@@ -711,7 +713,7 @@ class OrderController extends Controller
     {
         return [
             'id' => $order->id,
-            'order_number' => $order->order_number,
+            'order_number' => (string)$order->order_number,
             'formatted_order_number' => $order->show_formatted_order_number,
             'status' => $order->order_status->value,
             'table' => $order->table ? [
@@ -753,7 +755,7 @@ class OrderController extends Controller
                             'name' => $modifier->name,
                             'price' => (float)$modifier->price,
                         ];
-                    }),
+                    })->values()->toArray(),
                     'note' => $item->note,
                 ];
             }),

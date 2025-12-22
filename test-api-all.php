@@ -270,15 +270,19 @@ test('GET /tables', function() use ($app, $user) {
 });
 
 test('GET /tables/{id}', function() use ($app, $user, $table) {
+    $request = $app->make('Illuminate\Http\Request');
+    $request->setUserResolver(fn() => $user);
     $controller = new \App\Http\Controllers\Api\Mobile\TableController();
-    $result = $controller->show($table->id);
+    $result = $controller->show($request, $table->id);
     $data = json_decode($result->getContent(), true);
     return $data['success'] ? true : json_encode($data);
 });
 
 test('GET /tables/{id}/active-order', function() use ($app, $user, $table) {
+    $request = $app->make('Illuminate\Http\Request');
+    $request->setUserResolver(fn() => $user);
     $controller = new \App\Http\Controllers\Api\Mobile\TableController();
-    $result = $controller->activeOrder($table->id);
+    $result = $controller->activeOrder($request, $table->id);
     $data = json_decode($result->getContent(), true);
     // This may fail if no active order exists, which is OK
     return ($data['success'] || ($data['success'] === false && $data['message'] === 'No active order for this table')) ? true : json_encode($data);
@@ -303,8 +307,10 @@ test('POST /tables/{id}/unlock', function() use ($app, $user, $table) {
 });
 
 test('GET /tables/areas', function() use ($app, $user) {
+    $request = $app->make('Illuminate\Http\Request');
+    $request->setUserResolver(fn() => $user);
     $controller = new \App\Http\Controllers\Api\Mobile\TableController();
-    $result = $controller->areas();
+    $result = $controller->areas($request);
     $data = json_decode($result->getContent(), true);
     return $data['success'] ? true : json_encode($data);
 });

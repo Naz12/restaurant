@@ -62,7 +62,7 @@ class KotController extends Controller
             'data' => [
                 'kots' => $kots->map(function($kot) {
                     return $this->formatKot($kot);
-                }),
+                })->values()->toArray(),
                 'pagination' => [
                     'current_page' => $kots->currentPage(),
                     'last_page' => $kots->lastPage(),
@@ -387,7 +387,7 @@ class KotController extends Controller
             'token_number' => $kot->token_number,
             'order' => [
                 'id' => $kot->order->id,
-                'order_number' => $kot->order->order_number,
+                'order_number' => (string)$kot->order->order_number,
                 'formatted_order_number' => $kot->order->show_formatted_order_number,
             ],
             'table' => $kot->table ? [
