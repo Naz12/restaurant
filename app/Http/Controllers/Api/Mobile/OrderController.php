@@ -758,7 +758,7 @@ class OrderController extends Controller
                     })->values()->toArray(),
                     'note' => $item->note,
                 ];
-            }),
+            })->values()->toArray(),
             'created_at' => $order->created_at->toISOString(),
             'updated_at' => $order->updated_at->toISOString(),
         ];
