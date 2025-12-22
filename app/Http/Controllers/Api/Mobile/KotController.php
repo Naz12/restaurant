@@ -426,9 +426,9 @@ class KotController extends Controller
                             'id' => $modifier->id,
                             'name' => $modifier->name,
                         ];
-                    }),
+                    })->values()->toArray(),
                 ];
-            });
+            })->values()->toArray();
             $data['cancel_reason'] = $kot->cancelReason ? [
                 'id' => $kot->cancelReason->id,
                 'reason' => $kot->cancelReason->reason,
