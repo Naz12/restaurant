@@ -46,8 +46,8 @@ class TableController extends Controller
                 'status' => $activeOrder ? 'occupied' : 'available',
                 'active_order' => $activeOrder ? [
                     'id' => $activeOrder->id,
-                    'order_number' => $activeOrder->order_number,
-                    'formatted_order_number' => $activeOrder->show_formatted_order_number,
+                'order_number' => (string)$activeOrder->order_number,
+                'formatted_order_number' => $activeOrder->show_formatted_order_number,
                     'status' => $activeOrder->order_status->value,
                 ] : null,
             ];
@@ -93,8 +93,8 @@ class TableController extends Controller
                 'status' => $activeOrder ? 'occupied' : 'available',
                 'active_order' => $activeOrder ? [
                     'id' => $activeOrder->id,
-                    'order_number' => $activeOrder->order_number,
-                    'formatted_order_number' => $activeOrder->show_formatted_order_number,
+                'order_number' => (string)$activeOrder->order_number,
+                'formatted_order_number' => $activeOrder->show_formatted_order_number,
                     'status' => $activeOrder->order_status->value,
                     'waiter' => $activeOrder->waiter ? [
                         'id' => $activeOrder->waiter->id,
@@ -136,8 +136,8 @@ class TableController extends Controller
             'data' => [
                 'order' => [
                     'id' => $activeOrder->id,
-                    'order_number' => $activeOrder->order_number,
-                    'formatted_order_number' => $activeOrder->show_formatted_order_number,
+                'order_number' => (string)$activeOrder->order_number,
+                'formatted_order_number' => $activeOrder->show_formatted_order_number,
                     'status' => $activeOrder->order_status->value,
                     'waiter' => $activeOrder->waiter ? [
                         'id' => $activeOrder->waiter->id,
