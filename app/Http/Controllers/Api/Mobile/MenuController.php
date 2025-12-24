@@ -16,7 +16,8 @@ class MenuController extends Controller
      */
     public function items(Request $request)
     {
-        $query = MenuItem::with(['category', 'variations', 'modifierGroups.options']);
+        $query = MenuItem::with(['category', 'variations', 'modifierGroups.options'])
+            ->withCount('variations', 'modifierGroups');
 
         // Filter by category if provided
         if ($request->has('category_id')) {
@@ -53,7 +54,9 @@ class MenuController extends Controller
                 'category_id' => $item->item_category_id,
                 'category_name' => $item->category?->category_name,
                 'veg_non_veg' => $item->veg_non_veg,
-                'has_variations' => $item->variations->count() > 0,
+                'variations_count' => (int)$item->variations_count,
+                'modifier_groups_count' => (int)$item->modifier_groups_count,
+                'has_variations' => $item->variations_count > 0,
                 'variations' => $item->variations->map(function($variation) use ($orderTypeId, $deliveryAppId, $item) {
                     $variationPrice = $orderTypeId 
                         ? $item->getVariationPrice($variation->id)
@@ -100,6 +103,7 @@ class MenuController extends Controller
     public function show($id)
     {
         $item = MenuItem::with(['category', 'variations', 'modifierGroups.options'])
+            ->withCount('variations', 'modifierGroups')
             ->find($id);
 
         if (!$item) {
@@ -128,6 +132,9 @@ class MenuController extends Controller
                 'category_id' => $item->item_category_id,
                 'category_name' => $item->category?->category_name,
                 'veg_non_veg' => $item->veg_non_veg,
+                'variations_count' => (int)$item->variations_count,
+                'modifier_groups_count' => (int)$item->modifier_groups_count,
+                'has_variations' => $item->variations_count > 0,
                 'variations' => $item->variations->map(function($variation) use ($orderTypeId, $deliveryAppId, $item) {
                     $variationPrice = $orderTypeId 
                         ? $item->getVariationPrice($variation->id)
